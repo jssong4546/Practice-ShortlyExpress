@@ -6,14 +6,14 @@ module.exports = {
   get: (req, res) => {
     urls
       .findAll()
-      .then(result => {
+      .then((result) => {
         if (result) {
           res.status(200).json(result);
         } else {
           res.sendStatus(204);
         }
       })
-      .catch(error => {
+      .catch((error) => {
         console.log(error);
         res.status(500).send(error);
       });
@@ -34,12 +34,12 @@ module.exports = {
       urls
         .findOrCreate({
           where: {
-            url: url
+            url: url,
           },
           defaults: {
             baseUrl: req.headers.host,
-            title: title
-          }
+            title: title,
+          },
         })
         .then(([result, created]) => {
           if (!created) {
@@ -47,10 +47,10 @@ module.exports = {
           }
           res.status(201).json(result); // Created
         })
-        .catch(error => {
+        .catch((error) => {
           console.log(error);
           res.sendStatus(500); // Server error
         });
     });
-  }
+  },
 };
