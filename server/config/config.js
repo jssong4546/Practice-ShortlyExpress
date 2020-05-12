@@ -1,10 +1,9 @@
-const dotenv = require('dotenv');
-dotenv.config();
+require('dotenv').config();
 
 module.exports = {
   development: {
     username: 'root',
-    password: 'qweasd1!5057',
+    password: process.env.DATABASE_PASSWORD,
     database: 'shortly',
     host: 'localhost',
     dialect: 'mysql',
