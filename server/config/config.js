@@ -2,7 +2,7 @@ require('dotenv').config();
 
 module.exports = {
   development: {
-    username: 'songal4546',
+    username: 'admin',
     password: process.env.DATABASE_PASSWORD,
     database: 'shortly',
     host: 'shortly-deploy.cfs24azdcpaq.ap-northeast-2.rds.amazonaws.com',
@@ -12,7 +12,7 @@ module.exports = {
     ssl: true,
   },
   test: {
-    username: 'songal4546',
+    username: 'admin',
     password: process.env.DATABASE_PASSWORD,
     database: 'shortly',
     host: 'shortly-deploy.cfs24azdcpaq.ap-northeast-2.rds.amazonaws.com',
@@ -22,7 +22,7 @@ module.exports = {
     ssl: true,
   },
   production: {
-    username: 'songal4546',
+    username: 'admin',
     password: process.env.DATABASE_PASSWORD,
     database: 'shortly',
     host: 'shortly-deploy.cfs24azdcpaq.ap-northeast-2.rds.amazonaws.com',
