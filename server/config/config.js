@@ -6,7 +6,6 @@ module.exports = {
     password: 'qweasd1!5057',
     database: 'shortly',
     host: 'localhost',
-    port: 3306,
     dialect: 'mysql',
     logging: false,
     ssl: true,
