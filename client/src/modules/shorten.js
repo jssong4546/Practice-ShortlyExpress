@@ -7,29 +7,29 @@ const POST_URL_SUCCESS = 'POST_URL_SUCCESS';
 const POST_URL_FAILURE = 'POST_URL_FAILUER';
 
 function postUrlAPI(data) {
-  return axios.post('http://localhost:3001/links', data);
+  return axios.post('http://13.209.87.240:3001/links', data);
 }
 
 const initialState = {
   pending: false,
   error: false,
-  data: null
+  data: null,
 };
 
-export const shorten = data => dispatch => {
+export const shorten = (data) => (dispatch) => {
   dispatch({ type: POST_URL_PENDING });
 
   return postUrlAPI(data)
-    .then(result => {
+    .then((result) => {
       dispatch({
         type: POST_URL_SUCCESS,
-        payload: result.data
+        payload: result.data,
       });
     })
-    .catch(error => {
+    .catch((error) => {
       dispatch({
         type: POST_URL_FAILURE,
-        payload: error
+        payload: error,
       });
     });
 };
@@ -40,23 +40,23 @@ export default handleActions(
       return {
         ...state,
         pending: true,
-        error: false
+        error: false,
       };
     },
     [POST_URL_SUCCESS]: (state, action) => {
       return {
         ...state,
         pending: false,
-        data: action.payload
+        data: action.payload,
       };
     },
     [POST_URL_FAILURE]: (state, action) => {
       return {
         ...state,
         pending: false,
-        error: true
+        error: true,
       };
-    }
+    },
   },
   initialState
 );

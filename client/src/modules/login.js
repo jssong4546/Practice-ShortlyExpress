@@ -11,39 +11,39 @@ const LOGOUT = 'LOGOUT';
 axios.defaults.withCredentials = true;
 
 function postLoginAPI(data) {
-  return axios.post('http://localhost:3001/user/signin', data);
+  return axios.post('http://13.209.87.240:3001/user/signin', data);
 }
 
 function postLogoutAPI() {
-  return axios.post('http://localhost:3001/user/signout');
+  return axios.post('http://13.209.87.240:3001/user/signout');
 }
 
 const initialState = {
   pending: false,
   error: false,
-  isLogin: localStorage.getItem('isLogin') === 'true'
+  isLogin: localStorage.getItem('isLogin') === 'true',
 };
 
-export const login = data => dispatch => {
+export const login = (data) => (dispatch) => {
   dispatch({ type: POST_LOGIN_PENDING });
 
   return postLoginAPI(data)
-    .then(result => {
+    .then((result) => {
       dispatch({
         type: POST_LOGIN_SUCCESS,
-        payload: result.data
+        payload: result.data,
       });
     })
-    .catch(error => {
+    .catch((error) => {
       dispatch({
         type: POST_LOGIN_FAILURE,
-        payload: error
+        payload: error,
       });
     });
 };
 
-export const logout = data => dispatch => {
-  return postLogoutAPI().then(result => {
+export const logout = (data) => (dispatch) => {
+  return postLogoutAPI().then((result) => {
     dispatch({ type: LOGOUT });
   });
 };
@@ -55,7 +55,7 @@ export default handleActions(
         ...state,
         pending: true,
         error: false,
-        isLogin: false
+        isLogin: false,
       };
     },
     [POST_LOGIN_SUCCESS]: (state, action) => {
@@ -63,7 +63,7 @@ export default handleActions(
         ...state,
         pending: false,
         data: action.payload,
-        isLogin: true
+        isLogin: true,
       };
     },
     [POST_LOGIN_FAILURE]: (state, action) => {
@@ -71,15 +71,15 @@ export default handleActions(
         ...state,
         pending: false,
         error: true,
-        isLogin: false
+        isLogin: false,
       };
     },
     [LOGOUT]: (state, action) => {
       return {
         ...state,
-        isLogin: false
+        isLogin: false,
       };
-    }
+    },
   },
   initialState
 );

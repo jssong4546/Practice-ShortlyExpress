@@ -7,29 +7,29 @@ const GET_LIST_SUCCESS = 'GET_LIST_SUCCESS';
 const GET_LIST_FAILURE = 'GET_LIST_FAILUER';
 
 function getListAPI() {
-  return axios.get('http://localhost:3001/links');
+  return axios.get('http://13.209.87.240:3001/links');
 }
 
 const initialState = {
   pending: false,
   error: false,
-  data: []
+  data: [],
 };
 
-export const getList = () => dispatch => {
+export const getList = () => (dispatch) => {
   dispatch({ type: GET_LIST_PENDING });
 
   return getListAPI()
-    .then(result => {
+    .then((result) => {
       dispatch({
         type: GET_LIST_SUCCESS,
-        payload: result.data
+        payload: result.data,
       });
     })
-    .catch(error => {
+    .catch((error) => {
       dispatch({
         type: GET_LIST_FAILURE,
-        payload: error
+        payload: error,
       });
     });
 };
@@ -40,23 +40,23 @@ export default handleActions(
       return {
         ...state,
         pending: true,
-        error: false
+        error: false,
       };
     },
     [GET_LIST_SUCCESS]: (state, action) => {
       return {
         ...state,
         pending: false,
-        data: action.payload
+        data: action.payload,
       };
     },
     [GET_LIST_FAILURE]: (state, action) => {
       return {
         ...state,
         pending: false,
-        error: true
+        error: true,
       };
-    }
+    },
   },
   initialState
 );
