@@ -2,10 +2,12 @@ require('dotenv').config();
 
 module.exports = {
   development: {
-    username: 'root',
+    username: 'songal4546',
     password: process.env.DATABASE_PASSWORD,
     database: 'shortly',
-    host: 'localhost',
+    host:
+      'practice-database-deploy.cfs24azdcpaq.ap-northeast-2.rds.amazonaws.com',
+    port: 3306,
     dialect: 'mysql',
     logging: false,
     test: {
